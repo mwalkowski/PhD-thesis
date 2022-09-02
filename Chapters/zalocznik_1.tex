@@ -1,0 +1,34 @@
+\begin{lstlisting}[caption={Kod programu obliczający wszystkie możliwe kombinacje dla parametrów środowiskowych CVSS 2.0.}, label={lst:wplyw:cvss2}, language=Python, captionpos=b]
+    CDP = ['N', 'L', 'LM', 'MH', 'H']
+    TD = ['N', 'L', 'M', 'H']
+    CR = ['L', 'M', 'H']
+    IR = ['L', 'M', 'H']
+    AR = ['L', 'M', 'H']
+
+    cvss_2 = {}
+    cvss_2_severities = {}
+    idx = 1
+    combinations = {}
+    for cr in CR:
+        for ir in IR:
+            for ar in AR:
+                for td in TD:
+                    for cdp in CDP:
+                        vector = F'{base_vector}
+/CDP:{cdp}/TD:{td}/CR:{cr}/IR:{ir}/AR:{ar}'
+                        result = CVSS2(vector)
+                        env = result.scores()[2]
+                        if env not in cvss_2:
+                            cvss_2[env] = 1
+                        else:
+                            cvss_2[env] += 1
+                        sev = result.severities()[2]
+                        if sev not in cvss_2_severities:
+                            cvss_2_severities[sev] = 1
+                        else:
+                            cvss_2_severities[sev] += 1
+
+                        combinations[idx] = env
+                        idx += 1
+
+\end{lstlisting}

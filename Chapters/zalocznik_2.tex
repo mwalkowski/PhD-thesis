@@ -1,0 +1,28 @@
+\begin{lstlisting}[caption={Kod programu obliczający wszystkie możliwe kombinacje dla parametrów środowiskowych CVSS 3.x.}, label={lst:wplyw:cvss3}, language=Python, captionpos=b]
+    C = ['L', 'M', 'H']
+    I = ['L', 'M', 'H']
+    A = ['L', 'M', 'H']
+    cvss_3 = {}
+    cvss_3_severities = {}
+    idx = 1
+    combinations = {}
+    for c in C:
+        for i in I:
+            for a in A:
+                vector = F'{base_vector}/CR:{c}/IR:{i}/AR:{a}'
+                result = CVSS3(vector)
+                score = result.scores()[2]
+                if score not in cvss_3:
+                    cvss_3[score] = 1
+                else:
+                    cvss_3[score] += 1
+                sev = result.severities()[2]
+
+                if sev not in cvss_3_severities:
+                    cvss_3_severities[sev] = 1
+                else:
+                    cvss_3_severities[sev] += 1
+
+                combinations[idx] = score
+                idx += 1
+\end{lstlisting}

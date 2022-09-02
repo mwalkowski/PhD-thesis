@@ -1,0 +1,188 @@
+\documentclass[12pt, oneside]{book} 
+
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+
+\geometry{letterpaper}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage{setspace}
+\usepackage{physics}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{subcaption}
+\usepackage[numbers]{natbib}
+\usepackage{pdfpages}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{todonotes}
+\usepackage[section]{placeins}
+\usepackage{caption}
+\usepackage{color, colortbl}
+\usepackage{rotating}
+
+\setlength{\parindent}{0pt}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{8.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\marginparsep}{0pt}
+\setlength{\marginparwidth}{1in}
+
+\usepackage{array}
+\usepackage{xassoccnt}
+
+\newcolumntype{L}{>{\arraybackslash}m{11cm}}
+
+\captionsetup[table]{name=Tabela}
+
+\usepackage{fancyhdr}
+\newcommand{\changefont}{
+    \fontsize{9}{11}\selectfont
+}
+\fancyhf{}
+\fancyhead[RE,LO]{\changefont \slshape \leftmark} 
+
+\fancyfoot[C]{\thepage}
+
+
+
+\makeatletter
+
+\let\latex@@addcontentsline\addcontentsline 
+
+\AtBeginDocument{%
+    \renewcommand{\addcontentsline}[3]{%
+  \def\@@zzz{#1}\def\@@zxx{lol}
+  \latex@@addcontentsline{%
+    \ifx\@@zzz\@@zxx lof\else #1\fi
+  }{#2}{#3}%
+}
+
+\renewcommand\lstlistingname{Rysunek}
+\let\l@lstlisting\l@figure
+\let\c@lstlisting\c@figure
+\let\thelstlisting\thefigure
+\let\ftype@lstlisting\ftype@figure
+}
+\makeatother
+
+\addto\captionspolish{
+\renewcommand{\listtablename}{Spis tabel}
+}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+
+\vspace*{2cm}
+
+{\huge \textbf{Rozprawa Doktorska}}
+\vspace{2cm}
+
+{\huge Rozproszony algorytm analizy cyberbezpieczeństwa w sieci korporacyjnej}
+
+\vspace{2cm}
+
+{\large Mgr inż. Michał Walkowski}
+
+
+\begin{flushright}
+\vspace{2cm}
+{Promotor\\Profesor dr hab. inż.\\ Sławomir Sujecki}
+
+\vspace{0.5cm}
+{Promotor pomocniczy\\Dr inż. Jacek Oko}
+\end{flushright}
+
+\vfill
+
+\vspace*{3cm}
+
+POLITECHNIKA WROCŁAWSKA\\
+Wydział Informatyki i Telekomunikacji\\
+17 stycznia 2022
+\end{center}
+\end{titlepage}
+
+\frontmatter 
+\onehalfspacing
+
+\chapter{Streszczenie}
+\input{Chapters/Streszczenie}
+
+\chapter{Summary}
+\input{Chapters/Summary}
+
+\chapter{Podziękowania}
+\input{Chapters/Acknowledgements}
+
+\chapter*{}
+\input{Chapters/Lista_Dokonan}
+
+\tableofcontents
+
+\mainmatter
+\pagestyle{fancy}
+
+\chapter{Wstęp}
+\input{Chapters/Wstep/Chapter}
+
+\chapter{Proponowane rozwiązania}
+\input{Chapters/Rozwiazanie/Chapter}
+
+\chapter{Środowiska badawcze}
+\input{Chapters/Srodowiska/Chapter}
+
+\chapter{Wpływ parametrów na zmianę oceny oraz kategorii podatności}
+\input{Chapters/Wplyw/Chapter}
+
+\chapter{Analiza}
+\input{Chapters/Eksperymenty/Chapter}
+
+\chapter{Podsumowanie i dalsze kierunki badań}
+\input{Chapters/Podsumowanie/Chapter}
+
+\backmatter
+
+\addcontentsline{toc}{chapter}{Bibliografia}
+\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+
+\chapter{Załącznik Z.1 Kod programu obliczający wszystkie możliwe kombinacje dla parametrów środowiskowych CVSS 2.0.}
+\input{Chapters/zalocznik_1}
+
+\chapter{Załącznik Z.2 Kod programu obliczający wszystkie możliwe kombinacje dla parametrów środowiskowych CVSS 3.x.}
+\input{Chapters/zalocznik_2}
+\addtocontents
+{toc}
+{  \protect\contentsline{chapter}
+   {Załącznik Z.3 Dokumentacja projektowa oprogramowania VMC}
+   {136\relax}
+}
+
+\addtocontents
+{toc}
+{  \protect\contentsline{chapter}
+   {Załącznik Z.4 Dokumentacja projektowa oprogramowania VMC - Metryki}
+   {219\relax}
+}
+
+\addtocontents
+{toc}
+{  \protect\contentsline{chapter}
+   {Załącznik Z.5 Dokumentacja projektowa oprogramowania VMC - Reguły}
+   {257\relax}
+}
+
+
+\end{document}
